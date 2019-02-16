@@ -1,10 +1,11 @@
-import java.io.PrintWriter;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+
 
 public class FormattedString {
     public boolean b,u,i;
     public float size;
     public String string;
-    public PrintWriter printer;
+    public XWPFParagraph paragraph;
 
     FormattedString(){
         b=false;
@@ -12,17 +13,18 @@ public class FormattedString {
         i=false;
     }
 
-    FormattedString(boolean b, boolean u, boolean i, float size, String string, PrintWriter printer){
+    FormattedString(boolean b, boolean u, boolean i, float size, String string, XWPFParagraph paragraph){
         this.b=b;
         this.u=u;
         this.i=i;
         this.size=size;
         this.string=string;
-        this.printer = printer;
+        this.paragraph = paragraph;
     }
 
     public void print(){
-        printer.print(string);
+        //XWPFRun
+        //document.print(string);
     }
 
 

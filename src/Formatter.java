@@ -1,8 +1,10 @@
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+
 import java.io.File;
 
 public class Formatter {
     private boolean title = false;
-
+    private XWPFDocument doc = new XWPFDocument();
 
     public void readfile(File file){
 
