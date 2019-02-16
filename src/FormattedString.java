@@ -1,4 +1,5 @@
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 
 public class FormattedString {
@@ -23,7 +24,11 @@ public class FormattedString {
     }
 
     public void print(){
-        //XWPFRun
+        XWPFRun run = paragraph.createRun();
+        run.setBold(b);
+        run.setItalic(i);
+        run.setText(string);
+        run.addBreak();
         //document.print(string);
     }
 
