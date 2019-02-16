@@ -8,6 +8,7 @@ public class Formatter {
 
     public void readfile(File file){
 
+
     }
 
     //private static void charbychar(File file) {
