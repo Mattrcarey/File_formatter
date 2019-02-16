@@ -21,7 +21,7 @@ public class FormattedString {
         this.printer = printer;
     }
 
-    private void print(){
+    public void print(){
         printer.print(string);
     }
 
