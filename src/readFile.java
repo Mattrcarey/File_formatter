@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class readFile {
+    private static boolean title = false;
     public static void main(String[] args){
         String filename = args[0];
         System.out.println(filename);
@@ -24,5 +25,9 @@ public class readFile {
         catch (IOException error){
             error.printStackTrace();
         }
+    }
+
+    private static void analyzeString(String line){
+
     }
 }
