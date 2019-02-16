@@ -6,6 +6,12 @@ public class FormattedString {
     private String string;
     private PrintWriter printer;
 
+    FormattedString(){
+        b=false;
+        u=false;
+        i=false;
+    }
+
     FormattedString(boolean b, boolean u, boolean i, float size, String string, PrintWriter printer){
         this.b=b;
         this.u=u;
