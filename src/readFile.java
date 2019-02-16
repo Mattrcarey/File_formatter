@@ -11,7 +11,7 @@ public class readFile {
         File file = new File(filename);
         charbychar(file);
     }
-
+//take6
     private static void charbychar(File file) {
         try {
             FileInputStream in = new FileInputStream(file);
