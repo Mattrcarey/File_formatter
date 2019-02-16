@@ -1,10 +1,10 @@
 import java.io.PrintWriter;
 
 public class FormattedString {
-    private boolean b,u,i;
-    private float size;
-    private String string;
-    private PrintWriter printer;
+    public boolean b,u,i;
+    public float size;
+    public String string;
+    public PrintWriter printer;
 
     FormattedString(){
         b=false;
