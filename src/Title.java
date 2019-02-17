@@ -23,5 +23,6 @@ public class Title extends FormattedString {
         titleRun.setFontSize(this.size);
         titleRun.setText(this.string);
         titleRun.addBreak();
+
     }
 }
