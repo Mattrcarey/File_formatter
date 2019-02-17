@@ -96,9 +96,15 @@ public class Formatter {
                     formattedString.print();
                 }
                 else{
-                    FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), " “"+runs2[0], para);
-                    quote2.print();
-                    quote=true;
+                    if(runs[1].charAt(runs[1].length()-1)=='”'){
+                        FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), " “" + runs2[0] + "” " , para);
+                        quote2.print();
+                    }
+                    else {
+                        FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), " “" + runs2[0], para);
+                        quote2.print();
+                        quote = true;
+                    }
                 }
             }
         }
