@@ -58,7 +58,7 @@ public class Formatter {
             FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
             quote.print();
         }
-        else if(string.charAt(0)=='“'){
+        else if(string.contains("“")){
             //quote=!quote;
             FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
             quote.print();
