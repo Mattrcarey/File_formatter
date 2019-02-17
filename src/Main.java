@@ -6,7 +6,7 @@ public class Main {
         String filename = args[0];
         File file = new File(filename);
         Formatter formatter = new Formatter();
-        formatter.readfile(file);
+        formatter.readfile(file, filename);
     }
 
 

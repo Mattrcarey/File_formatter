@@ -1,23 +1,27 @@
-import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class Formatter {
     private boolean title = false;
     public XWPFDocument newfile;// = new XWPFDocument();
 
-    public void readfile(File file) throws IOException {
+    public void readfile(File file, String filename) throws IOException {
         newfile = new XWPFDocument();
-        FileOutputStream out = new FileOutputStream(new File("test2.docx"));
+        String formatted_filename = filename.substring(0,filename.length()-5);
+        FileOutputStream out = new FileOutputStream(new File(formatted_filename +"_formatted.docx"));
         XWPFDocument doc = new XWPFDocument(new FileInputStream(file));
         List<XWPFParagraph> paragraphs = doc.getParagraphs();
-        Iterator<IBodyElement> iter = doc.getBodyElementsIterator();
-        List<String[]> vararray = new ArrayList<>();
+//        Iterator<IBodyElement> iter = doc.getBodyElementsIterator();
+//        List<String[]> vararray = new ArrayList<>();
         //while(iter.hasNext()){
-            IBodyElement elem = iter.next();
+//            IBodyElement elem = iter.next();
             for(XWPFParagraph para : paragraphs){
                 analyzeParagraph(para);
                 //System.out.println(para.getText());
@@ -32,10 +36,17 @@ public class Formatter {
 
     public void analyzeParagraph(XWPFParagraph paragraph){
         XWPFParagraph paragraph1 = newfile.createParagraph();
-        if(paragraph.getRuns().size()==1){
+        //System.out.println(paragraph.getText());
+        if(paragraph.getNumFmt()!=null){
+            //XWPFNumbering numbering = newfile.createNumbering();
+            paragraph1.createRun().setText("    - " + paragraph.getText());
+            System.out.println(paragraph.getText());
+        }
+        else if(paragraph.getText().length()<89){
             if(!title){
-                FormattedString title = new Title(paragraph.getText(),paragraph1);
-                title.print();
+                FormattedString t = new Title(paragraph.getText(),paragraph1);
+                t.print();
+                title = true;
             }
             else{
                 FormattedString header = new Header(paragraph.getText(),paragraph1);
@@ -43,6 +54,7 @@ public class Formatter {
             }
         }
         else {
+            paragraph1.setSpacingBetween(2);
             for (XWPFRun run : paragraph.getRuns()) {
                 analyzeRun(run, paragraph1);
             }
