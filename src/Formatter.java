@@ -63,6 +63,7 @@ public class Formatter {
                 FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), runs[0] + "” ", para);
                 quote2.print();
                 FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[1], para);
+                formattedString.print();
                 quote = false;
             }
             else{
@@ -85,9 +86,9 @@ public class Formatter {
 //                    formattedString.print();
 //                }
             else {
-                String[] runs2 = runs[1].split("”");
-                FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(),runs[1],para);
+                FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[0], para);
                 formattedString.print();
+                String[] runs2 = runs[1].split("”");
                 if(runs2.length==2) {
                     FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), " “"+runs2[0]+"” ", para);
                     quote2.print();
