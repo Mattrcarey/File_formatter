@@ -10,13 +10,11 @@ public class FormattedString {
 
     FormattedString(){
         b=false;
-        u=false;
         i=false;
     }
 
-    FormattedString(boolean b, boolean u, boolean i, int size, String string, XWPFParagraph paragraph){
+    FormattedString(boolean b,boolean i, int size, String string, XWPFParagraph paragraph){
         this.b=b;
-        this.u=u;
         this.i=i;
         this.size=size;
         this.string=string;

@@ -1,15 +1,12 @@
-import java.io.File;
-import java.io.FileOutputStream;
-
-import org.apache.poi.xwpf.usermodel.*;
-
-import java.io.FileOutputStream;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 
 public class Title extends FormattedString {
 
-    Title(boolean b, boolean u, boolean i, String string, XWPFParagraph paragraph){
-        super(true, false, false, 18, string, paragraph);
+    Title(String string, XWPFParagraph paragraph){
+        super(true, false, 18, string, paragraph);
     }
 
     @Override

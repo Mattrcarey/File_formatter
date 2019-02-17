@@ -3,8 +3,8 @@ import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 public class Quote extends FormattedString {
 
-    public Quote(boolean b, boolean u, boolean i, int size, String string, XWPFParagraph paragraph){
-        super(b,u,i, size, string, paragraph);
+    public Quote(boolean b,boolean i, int size, String string, XWPFParagraph paragraph){
+        super(b,i, size, string, paragraph);
     }
 
     @Override
