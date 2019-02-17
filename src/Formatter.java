@@ -55,7 +55,7 @@ public class Formatter {
         //check if its a title/quote/Link/header
         String string = run.getText(0);
         if(string.equals("")){
-            FormattedString formattedString = new FormattedString((run.isBold(),run.isItalic(),run.getFontSize(),string,para);
+            FormattedString formattedString = new FormattedString(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
             formattedString.print();
         }
         else if(quote){
