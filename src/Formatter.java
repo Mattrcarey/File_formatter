@@ -11,6 +11,7 @@ import java.util.List;
 public class Formatter {
     private boolean title = false;
     private boolean quote = false;
+    private boolean link = false;
     public XWPFDocument newfile;// = new XWPFDocument();
 
     public void readfile(File file, String filename) throws IOException {
@@ -28,6 +29,8 @@ public class Formatter {
 
     public void analyzeParagraph(XWPFParagraph paragraph){
         XWPFParagraph paragraph1 = newfile.createParagraph();
+        link = false;
+        quote = false;
         if(paragraph.getNumFmt()!=null){
             paragraph1.createRun().setText("    - " + paragraph.getText());
         }
@@ -56,6 +59,21 @@ public class Formatter {
         if(string == null ){
             FormattedString formattedString = new FormattedString(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
             formattedString.print();
+        }
+        else if(link){
+            String[] runs = string.split(" ");
+            FormattedString link2 = new Link(run.isBold(),run.isItalic(),run.getFontSize(),runs[0],para);
+            link2.print();
+            for(int i = 1; i<runs.length; i++){
+                FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), " " + runs[i], para);
+                formattedString.print();
+            }
+            if(runs.length==1){
+                link = true;
+            }
+            else{
+                link = false;
+            }
         }
         else if(quote){
             String[] runs = string.split("”");
@@ -108,9 +126,35 @@ public class Formatter {
                 }
             }
         }
-        else if(string.contains("www")){
-            FormattedString link = new Link(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
-            link.print();
+        else if(string.contains("http://")){
+            String[] runs = string.split("http:");
+            if(runs[0].contains("//")){
+                String[] runs2 = runs[0].split(" ");
+                FormattedString link = new Link(run.isBold(), run.isItalic(), run.getFontSize(), "http:" + runs2[0], para);
+                link.print();
+                for(int i = 1; i<runs2.length; i++){
+                    FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), " " + runs2[i], para);
+                    formattedString.print();
+                }
+                if(runs.length==2){
+                    FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[1], para);
+                    formattedString.print();
+                }
+            }
+            else if(runs[1].contains("//")){
+                FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[0], para);
+                formattedString.print();
+                String[] runs2 = runs[1].split(" ");
+                FormattedString link2 = new Link(run.isBold(), run.isItalic(), run.getFontSize(), "http:" + runs2[0], para);
+                link2.print();
+                for(int i = 1; i<runs2.length; i++){
+                    formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), " " + runs2[i], para);
+                    formattedString.print();
+                }
+                if(runs2.length==1){
+                    link = true;
+                }
+            }
         }
         else{
             FormattedString formattedString = new FormattedString(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
