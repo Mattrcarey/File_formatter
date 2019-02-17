@@ -17,7 +17,6 @@ public class Title extends FormattedString {
         titleRun.setFontSize(this.size);
         paragraph.setAlignment(ParagraphAlignment.CENTER);
         titleRun.setText(this.string);
-        //titleRun.addBreak();
-
+        titleRun.addBreak();
     }
 }

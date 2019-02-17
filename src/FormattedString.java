@@ -8,11 +8,6 @@ public class FormattedString {
     public String string;
     public XWPFParagraph paragraph;
 
-    FormattedString(){
-        b=false;
-        i=false;
-    }
-
     FormattedString(boolean b,boolean i, int size, String string, XWPFParagraph paragraph){
         this.b=b;
         this.i=i;
@@ -27,8 +22,6 @@ public class FormattedString {
         run.setItalic(i);
         run.setText(string);
         run.setFontSize(12);
-        //run.addBreak();
-        //document.print(string);
     }
 
 

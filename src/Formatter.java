@@ -54,7 +54,6 @@ public class Formatter {
     }
 
     public void analyzeRun(XWPFRun run, XWPFParagraph para) {
-        //check if its a title/quote/Link/header
         String string = run.getText(0);
         if(string == null ){
             FormattedString formattedString = new FormattedString(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
@@ -99,10 +98,6 @@ public class Formatter {
                 FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs2[1] + runs[1], para);
                 formattedString.print();
             }
-//                if(runs.length==2) {
-//                    FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[1], para);
-//                    formattedString.print();
-//                }
             else {
                 FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[0], para);
                 formattedString.print();
@@ -161,40 +156,5 @@ public class Formatter {
             formattedString.print();
         }
 
-        //XWPFRun runtest = para.createRun();
-        //runtest.setText(string);
     }
-
-
-//        String filedata;
-//        char[] filechars;
-//        try{
-//            XWPFDocument doc = new XWPFDocument(new FileInputStream(file));
-//            XWPFWordExtractor extractor = new XWPFWordExtractor(doc);
-//            filedata = extractor.getText();
-//            filechars = filedata.toCharArray();
-//            int length = filechars.length;
-//            buildfile(filechars,length);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-
 }
-
-
-    //private static void charbychar(File file) {
-    //    try {
-    //        FileInputStream in = new FileInputStream(file);
-    //        char current;
-    //        while (in.available() > 0) {
-    //            current = (char) in.read();
-    //            //do something with the character
-    //        }
-    //    }
-    //    catch (IOException error){
-    //        error.printStackTrace();
-    //    }
-    //}
-
-

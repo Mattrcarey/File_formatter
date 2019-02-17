@@ -9,13 +9,4 @@ public class Main {
         formatter.readfile(file, filename);
     }
 
-
-//        System.out.println(filename);
-//        //File file = new File("test.txt");
-//        //for(String fileNames : file.list()) System.out.println(fileNames);
-//        File file = new File(filename);
-//        Formatter formatter = new Formatter();
-//        formatter.readfile(file);
-        //XWPFDocument document = new XWPFDocument();
-
 }

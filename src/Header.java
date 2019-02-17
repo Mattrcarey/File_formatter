@@ -14,7 +14,6 @@ public class Header extends FormattedString {
         headerRun.setItalic(this.i);
         headerRun.setFontSize(this.size);
         headerRun.setText(this.string);
-        //headerRun.addBreak();
     }
 
 }

@@ -15,8 +15,4 @@ public class Link extends FormattedString {
         run.setUnderline(UnderlinePatterns.SINGLE);
         run.setText(string);
     }
-
-    //https://www.baeldung.com/java-microsoft-word-with-apache-poi
-
-    //https://blog.webnersolutions.com/read-word-document-using-apache-poi-java
 }
