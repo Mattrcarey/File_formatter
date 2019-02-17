@@ -54,7 +54,11 @@ public class Formatter {
     public void analyzeRun(XWPFRun run, XWPFParagraph para) {
         //check if its a title/quote/Link/header
         String string = run.getText(0);
-        if(quote){
+        if(string.equals("")){
+            FormattedString formattedString = new FormattedString((run.isBold(),run.isItalic(),run.getFontSize(),string,para);
+            formattedString.print();
+        }
+        else if(quote){
             FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
             quote.print();
         }
