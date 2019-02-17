@@ -26,8 +26,8 @@ public class FormattedString {
         run.setBold(b);
         run.setItalic(i);
         run.setText(string);
-        run.setFontSize(size);
-        run.addBreak();
+        run.setFontSize(12);
+        //run.addBreak();
         //document.print(string);
     }
 

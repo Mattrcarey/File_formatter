@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Formatter {
     private boolean title = false;
+    private boolean quote = false;
     public XWPFDocument newfile;// = new XWPFDocument();
 
     public void readfile(File file, String filename) throws IOException {
@@ -18,27 +19,16 @@ public class Formatter {
         FileOutputStream out = new FileOutputStream(new File(formatted_filename +"_formatted.docx"));
         XWPFDocument doc = new XWPFDocument(new FileInputStream(file));
         List<XWPFParagraph> paragraphs = doc.getParagraphs();
-//        Iterator<IBodyElement> iter = doc.getBodyElementsIterator();
-//        List<String[]> vararray = new ArrayList<>();
-        //while(iter.hasNext()){
-//            IBodyElement elem = iter.next();
             for(XWPFParagraph para : paragraphs){
                 analyzeParagraph(para);
-                //System.out.println(para.getText());
-                //for(XWPFRun run : para.getRuns()) {
-                //    analyzeRun(run);
-                //}
             }
             newfile.write(out);
             out.close();
-        //}
     }
 
     public void analyzeParagraph(XWPFParagraph paragraph){
         XWPFParagraph paragraph1 = newfile.createParagraph();
-        //System.out.println(paragraph.getText());
         if(paragraph.getNumFmt()!=null){
-            //XWPFNumbering numbering = newfile.createNumbering();
             paragraph1.createRun().setText("    - " + paragraph.getText());
             System.out.println(paragraph.getText());
         }
@@ -63,13 +53,27 @@ public class Formatter {
 
     public void analyzeRun(XWPFRun run, XWPFParagraph para) {
         //check if its a title/quote/Link/header
-        //System.out.println(run.getText(0));
         String string = run.getText(0);
-        //if(string.contains("\"")){
-        //    run.setItalic(true);
-        //}
-        XWPFRun runtest = para.createRun();
-        runtest.setText(string);
+        if(quote){
+            FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
+            quote.print();
+        }
+        else if(string.charAt(0)=='“'){
+            //quote=!quote;
+            FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
+            quote.print();
+        }
+        else if(string.contains("www")){
+            FormattedString link = new Link(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
+            link.print();
+        }
+        else{
+            FormattedString formattedString = new FormattedString(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
+            formattedString.print();
+        }
+
+        //XWPFRun runtest = para.createRun();
+        //runtest.setText(string);
     }
 
 
