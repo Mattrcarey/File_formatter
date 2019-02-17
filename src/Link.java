@@ -17,4 +17,6 @@ public class Link extends FormattedString {
     }
 
     //https://www.baeldung.com/java-microsoft-word-with-apache-poi
+
+    //https://blog.webnersolutions.com/read-word-document-using-apache-poi-java
 }
