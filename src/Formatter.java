@@ -30,7 +30,6 @@ public class Formatter {
         XWPFParagraph paragraph1 = newfile.createParagraph();
         if(paragraph.getNumFmt()!=null){
             paragraph1.createRun().setText("    - " + paragraph.getText());
-            System.out.println(paragraph.getText());
         }
         else if(paragraph.getText().length()<89){
             if(!title){
@@ -59,13 +58,48 @@ public class Formatter {
             formattedString.print();
         }
         else if(quote){
-            FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
-            quote.print();
+            String[] runs = string.split("”");
+            if(runs.length==2) {
+                FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), runs[0] + "” ", para);
+                quote2.print();
+                FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[1], para);
+                quote = false;
+            }
+            else{
+                FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), runs[0], para);
+                quote2.print();
+            }
         }
         else if(string.contains("“")){
             //quote=!quote;
-            FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
-            quote.print();
+            String[] runs = string.split("“");
+            if(runs[0].contains("”")){
+                String[] runs2 = runs[0].split("”");
+                FormattedString quote = new Quote(run.isBold(),run.isItalic(),run.getFontSize()," “"+runs2[0]+"” ",para);
+                quote.print();
+                FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs2[1] + runs[1], para);
+                formattedString.print();
+            }
+//                if(runs.length==2) {
+//                    FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs[1], para);
+//                    formattedString.print();
+//                }
+            else {
+                String[] runs2 = runs[1].split("”");
+                FormattedString formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(),runs[1],para);
+                formattedString.print();
+                if(runs2.length==2) {
+                    FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), " “"+runs2[0]+"” ", para);
+                    quote2.print();
+                    formattedString = new FormattedString(run.isBold(), run.isItalic(), run.getFontSize(), runs2[1], para);
+                    formattedString.print();
+                }
+                else{
+                    FormattedString quote2 = new Quote(run.isBold(), run.isItalic(), run.getFontSize(), " “"+runs2[0], para);
+                    quote2.print();
+                    quote=true;
+                }
+            }
         }
         else if(string.contains("www")){
             FormattedString link = new Link(run.isBold(),run.isItalic(),run.getFontSize(),string,para);
